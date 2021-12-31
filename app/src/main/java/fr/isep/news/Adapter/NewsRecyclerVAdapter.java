@@ -61,6 +61,7 @@ public class NewsRecyclerVAdapter extends RecyclerView.Adapter<NewsRecyclerVAdap
             public void onClick(View v) {
                 Intent intent = new Intent(context,Newsdetail.class);
                 intent.putExtra("NewsTitle",CurrentArticle.getTitle());
+                intent.putExtra("NewsDescription",CurrentArticle.getTitle());
                 intent.putExtra("NewsContent",CurrentArticle.getContent());
                 intent.putExtra("NewsImage",CurrentArticle.getUrlToImage());
                 intent.putExtra("NewsURL",CurrentArticle.getUrl());

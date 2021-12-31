@@ -7,8 +7,9 @@
         <entry key="app/src/main/res/drawable-v24/ic_library_books_black_24dp.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/category_frame.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2712962962962963" />
+        <entry key="app/src/main/res/drawable/image_frame.xml" value="0.11944444444444445" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2368659420289855" />
-        <entry key="app/src/main/res/layout/activity_newsdetail.xml" value="0.2884963768115942" />
+        <entry key="app/src/main/res/layout/activity_newsdetail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/category_frame.xml" value="0.2884963768115942" />
         <entry key="app/src/main/res/layout/category_items.xml" value="0.2884963768115942" />
         <entry key="app/src/main/res/layout/news_items.xml" value="0.2884963768115942" />
