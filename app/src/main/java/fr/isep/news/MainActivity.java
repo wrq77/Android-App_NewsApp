@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
 
     private RecyclerView NewsRV, CategoryRV;
 
+    private TextView hint;
+
     private ArrayList<Newsdetail> newsdetailArrayList = new ArrayList<>();
     private ArrayList<Category> categoryArrayList = new ArrayList<>();
 
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
 
         NewsRV = findViewById(R.id.News);
         CategoryRV = findViewById(R.id.Category);
+        hint = findViewById(R.id.Hint);
 
         categotyRecyclerVAdapter = new CategoryRecyclerVAdapter(categoryArrayList,this,this::onClickCategory);
         newsRecyclerVAdapter = new NewsRecyclerVAdapter(newsdetailArrayList,this);
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
     @Override
     public void onClickCategory(int position) {
         String categoryName = categoryArrayList.get(position).getCategoryName();
+        hint.setVisibility(View.INVISIBLE);
         getNews(categoryName);
 
     }

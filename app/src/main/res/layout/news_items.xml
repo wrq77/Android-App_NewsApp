@@ -47,7 +47,7 @@
                 android:layout_toEndOf="@+id/imageNews"
                 app:contentPadding="3dp"
                 android:text="News title"
-                android:textColor="@color/Grey_deep"
+                android:textColor="@color/News_title"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:gravity="center_vertical"/>

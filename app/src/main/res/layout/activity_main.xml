@@ -49,6 +49,19 @@
             tools:layout_editor_absoluteX="0dp"
             tools:listitem="@layout/news_items" />
 
+        <TextView
+            android:id="@+id/Hint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/Category"
+            android:gravity="center"
+            android:text="Welcome!\n Please click the category to get related news!"
+            android:textColor="@color/Grey_deep"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+
     </RelativeLayout>
 
     <RelativeLayout
