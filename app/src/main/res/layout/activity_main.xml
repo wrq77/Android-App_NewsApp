@@ -14,40 +14,40 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:id="@+id/logo"
         tools:ignore="MissingConstraints">
 
         <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:src="@drawable/ic_library_books_black_24dp"/>
 
     </androidx.appcompat.widget.Toolbar>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Category"
-        android:orientation="horizontal"
-        android:layout_below="@+id/logo"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:padding="5dp"
-        tools:listitem="@layout/category_items"
-        tools:ignore="MissingConstraints" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logo"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:ignore="MissingConstraints"
+            tools:listitem="@layout/category_items" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/News"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_below="@+id/Category"
-        tools:layout_editor_absoluteX="0dp"
-        tools:listitem="@layout/news_items" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/News"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/Category"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/news_items" />
 
     </RelativeLayout>
 
@@ -61,17 +61,9 @@
 
 
         <ImageView
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_home_black_24dp" />
-
-        <ImageView
             android:id="@+id/likednews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_collections_bookmark_black_24dp" />
 

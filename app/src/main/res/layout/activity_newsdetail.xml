@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,24 +13,39 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/footer">
 
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_library_books_black_24dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
         <ImageView
             android:id="@+id/newsImage"
             android:layout_width="match_parent"
-            android:layout_height="254dp"
-            android:scaleType="fitXY" />
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:layout_below="@+id/logo"/>
 
         <ImageView
-            android:id="@+id/image00"
+            android:id="@+id/imageFrame"
             android:layout_width="match_parent"
-            android:layout_height="255dp"
-            android:contentDescription="round corner"
-            android:src="@drawable/image_frame" />
+            android:layout_height="250dp"
+            android:src="@drawable/image_frame"
+            android:layout_below="@+id/logo"/>
 
         <ScrollView
             android:id="@+id/news_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/image00"
+            android:layout_below="@+id/imageFrame"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp">
@@ -45,33 +59,29 @@
                     android:id="@+id/news_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="Title"
-                    android:textColor="#000"
-                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="19dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/news_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
-                    android:layout_weight="1"
                     android:text="Description"
-                    android:textColor="#000"
-                    android:textSize="18dp" />
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/news_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
                     android:text="Content"
-                    android:textColor="#000"
-                    android:textSize="18dp" />
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
 
             </LinearLayout>
 
@@ -103,7 +113,6 @@
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_favorite_border_black_24dp" />
-
 
 
         <ImageView

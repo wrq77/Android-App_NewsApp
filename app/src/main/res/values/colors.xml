@@ -7,7 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="Grey_bg">#9B9B9B</color>
+    <color name="Grey_bg">#AFAFAF</color>
     <color name="Grey_deep">#232323</color>
+    <color name="Grey_medium">#979797</color>
     <color name="News_title">#302525</color>
 </resources>

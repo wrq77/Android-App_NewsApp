@@ -1,11 +1,10 @@
 package fr.isep.news.model;
 
 public class Newsdetail {
-
     private String title;
+    private String description;
     private String url;
     private String urlToImage;
-    private String description;
     private String content;
 
     public Newsdetail(String title, String url, String urlToImage, String description, String content) {
