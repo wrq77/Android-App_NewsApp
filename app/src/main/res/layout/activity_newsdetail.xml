@@ -21,7 +21,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:src="@drawable/ic_library_books_black_24dp" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -29,7 +29,7 @@
         <ImageView
             android:id="@+id/NewsImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="275dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:scaleType="fitXY"
@@ -38,11 +38,11 @@
         <ImageView
             android:id="@+id/imageFrame"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="275dp"
+            android:layout_below="@+id/logo"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/image_frame"
-            android:layout_below="@+id/logo"/>
+            android:src="@drawable/image_frame" />
 
         <ScrollView
             android:id="@+id/news_scroll_view"
@@ -69,11 +69,7 @@
                     android:textSize="22dp"
                     android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_below="@+id/NewsTitle">
+
 
                 <TextView
                     android:id="@+id/NewsAuthor"
@@ -95,7 +91,6 @@
                     android:textSize="15dp"
                     android:layout_weight="1"/>
 
-            </LinearLayout>
 
                 <TextView
                     android:id="@+id/NewsDescription"
@@ -136,7 +131,9 @@
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:background="@drawable/footer_selector"
             android:src="@drawable/ic_home_black_24dp" />
 
         <ImageView
@@ -145,6 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
+            android:background="@drawable/footer_selector"
             android:src="@drawable/ic_favorite_border_black_24dp" />
 
 
@@ -154,6 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:background="@drawable/footer_selector"
             android:src="@drawable/ic_manage_accounts_black_24dp" />
 
     </RelativeLayout>

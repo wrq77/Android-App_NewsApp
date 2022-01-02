@@ -1,6 +1,8 @@
 package fr.isep.news;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,16 +12,16 @@ import com.squareup.picasso.Picasso;
 
 public class NewsDetailActivity extends AppCompatActivity {
 
-    String NewsTitle;
-    String NewsAuthor;
-    String NewsPublishAt;
-    String NewsContent;
-    String NewsImageURL;
-    String NewsURL;
-    String NewsDescription;
+    /* TODO :
+       1. HOW to get the full content of the truncated text of api
+       2. Click the "Heart" to store the news to the database
+       3. Click the button to the profile management
+    */
+
+    private String NewsTitle,NewsAuthor,NewsPublishAt,NewsContent,NewsImageURL,NewsURL,NewsDescription;
 
     private TextView titleTV, authorTV, publishTV, descriptionTV, contentTV;
-    private ImageView newsImage;
+    private ImageView newsImage, ClickToHomePage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +43,21 @@ public class NewsDetailActivity extends AppCompatActivity {
         contentTV = findViewById(R.id.NewsContent);
 
         newsImage = findViewById(R.id.NewsImage);
+        ClickToHomePage = findViewById(R.id.home);
+        ClickToHomePage.setOnClickListener(this::ClicktoHomePage);
 
         titleTV.setText(NewsTitle);
-        authorTV.setText(NewsAuthor);
-        publishTV.setText(NewsPublishAt);
+        authorTV.setText("Author: "+NewsAuthor);
+        publishTV.setText("Publish Date: "+NewsPublishAt);
         descriptionTV.setText(NewsDescription);
         contentTV.setText(NewsContent);
 
         Picasso.get().load(NewsImageURL).into(newsImage);
     }
+
+    private void ClicktoHomePage(View view) {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
+
 }
