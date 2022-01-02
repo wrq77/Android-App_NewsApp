@@ -11,18 +11,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import fr.isep.news.API.RetrofitBuilder;
-import fr.isep.news.API.RetrofitInterface;
+import fr.isep.news.NewsAPI.RetrofitBuilder;
+import fr.isep.news.NewsAPI.RetrofitInterface;
 import fr.isep.news.Adapter.CategoryRecyclerVAdapter;
 import fr.isep.news.Adapter.NewsRecyclerVAdapter;
-import fr.isep.news.model.Category;
-import fr.isep.news.model.News;
-import fr.isep.news.model.Newsdetail;
+import fr.isep.news.Model.Category;
+import fr.isep.news.Model.News;
+import fr.isep.news.Model.Newsdetail;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements CategoryRecyclerVAdapter.CategoryClickInterface{
 
@@ -92,8 +90,8 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
                 News news = response.body();
                 ArrayList<Newsdetail> newsdetails = news.getArticles();
                 for (int i = 0; i < newsdetails.size(); i++){
-                    newsdetailArrayList.add(new Newsdetail(newsdetails.get(i).getTitle(),newsdetails.get(i).getUrl(),
-                            newsdetails.get(i).getUrlToImage(),newsdetails.get(i).getDescription(),newsdetails.get(i).getContent()));
+                    newsdetailArrayList.add(new Newsdetail(newsdetails.get(i).getTitle(),newsdetails.get(i).getAuthor(),newsdetails.get(i).getPublishedAt(),
+                            newsdetails.get(i).getDescription(),newsdetails.get(i).getUrl(), newsdetails.get(i).getUrlToImage(),newsdetails.get(i).getContent()));
                 }
                 newsRecyclerVAdapter.notifyDataSetChanged();
             }

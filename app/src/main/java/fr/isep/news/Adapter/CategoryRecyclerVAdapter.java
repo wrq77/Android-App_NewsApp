@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import fr.isep.news.R;
-import fr.isep.news.model.Category;
+import fr.isep.news.Model.Category;
 
 public class CategoryRecyclerVAdapter extends RecyclerView.Adapter<CategoryRecyclerVAdapter.ViewHolder>{
     private ArrayList<Category> DataSet;

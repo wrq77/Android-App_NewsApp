@@ -1,4 +1,4 @@
-package fr.isep.news.API;
+package fr.isep.news.NewsAPI;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

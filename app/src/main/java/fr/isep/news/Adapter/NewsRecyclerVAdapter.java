@@ -15,8 +15,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import fr.isep.news.NewsDetailActivity;
 import fr.isep.news.R;
-import fr.isep.news.model.Newsdetail;
+import fr.isep.news.Model.Newsdetail;
 
 public class NewsRecyclerVAdapter extends RecyclerView.Adapter<NewsRecyclerVAdapter.ViewHolder>{
 
@@ -59,11 +60,13 @@ public class NewsRecyclerVAdapter extends RecyclerView.Adapter<NewsRecyclerVAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,Newsdetail.class);
+                Intent intent = new Intent(context, NewsDetailActivity.class);
                 intent.putExtra("NewsTitle",CurrentArticle.getTitle());
+                intent.putExtra("NewsAuthor",CurrentArticle.getAuthor());
+                intent.putExtra("NewsPulishedAt",CurrentArticle.getPublishedAt());
                 intent.putExtra("NewsDescription",CurrentArticle.getTitle());
                 intent.putExtra("NewsContent",CurrentArticle.getContent());
-                intent.putExtra("NewsImage",CurrentArticle.getUrlToImage());
+                intent.putExtra("NewsImageURL",CurrentArticle.getUrlToImage());
                 intent.putExtra("NewsURL",CurrentArticle.getUrl());
 
                 context.startActivity(intent);

@@ -1,4 +1,4 @@
-package fr.isep.news.model;
+package fr.isep.news.Model;
 
 import java.util.ArrayList;
 

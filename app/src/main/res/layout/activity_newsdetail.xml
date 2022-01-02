@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/footer">
 
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/logo"
             android:layout_width="match_parent"
@@ -28,16 +27,20 @@
         </androidx.appcompat.widget.Toolbar>
 
         <ImageView
-            android:id="@+id/newsImage"
+            android:id="@+id/NewsImage"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:scaleType="fitXY"
             android:layout_below="@+id/logo"/>
 
         <ImageView
             android:id="@+id/imageFrame"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/image_frame"
             android:layout_below="@+id/logo"/>
 
@@ -50,38 +53,68 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_below="@+id/image_frame">
 
                 <TextView
-                    android:id="@+id/news_title"
+                    android:id="@+id/NewsTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Title"
                     android:textColor="@color/black"
-                    android:textSize="19dp"
+                    android:textSize="22dp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/news_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="Description"
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_below="@+id/NewsTitle">
 
                 <TextView
-                    android:id="@+id/news_content"
+                    android:id="@+id/NewsAuthor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Author"
+                    android:textColor="@color/Grey_deep"
+                    android:textSize="15dp"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/NewsPublishAt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Date"
+                    android:textColor="@color/Grey_deep"
+                    android:textSize="15dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/NewsDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Description"
+                    android:textStyle="italic"
+                    android:textColor="@color/Grey_deep"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/NewsContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="Content"
                     android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:textSize="20dp" />
 
             </LinearLayout>
 
