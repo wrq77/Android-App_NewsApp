@@ -2,12 +2,23 @@ package fr.isep.news;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -15,11 +26,24 @@ public class SignupActivity extends AppCompatActivity {
     private EditText EditEmail, EditUsername, EditPassword, EditPasswordAgain;
     private Button BtnSignup;
 
+    public static Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+    //"\\w+@(\\w+.)+[a-z]{2,3}"
+
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        //check to see if the user is currently signed in.
+        if(mAuth.getCurrentUser()!=null){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
 
         EditEmail = findViewById(R.id.EnterEmail);
         EditUsername = findViewById(R.id.EnterUsername);
@@ -32,9 +56,58 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
         BtnSignup = findViewById(R.id.Lbtn_signup);
+        BtnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signup();
+            }
+        });
+    }
+
+    private void signup() {
+        String email = EditEmail.getText().toString();
+        String userName = EditUsername.getText().toString();
+        String password = EditPassword.getText().toString();
+        String passwordAgain = EditPasswordAgain.getText().toString();
+
+        if(!isEmail(email) || email.length() > 31){
+            Toast.makeText(this, "Email format error", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(email) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(password) || TextUtils.isEmpty(passwordAgain)){
+            Toast.makeText(this, "Please fill in all the boxes",Toast.LENGTH_LONG).show();
+        }else if(password.length()<=6){
+            Toast.makeText(this, "Password Must be >= 6 Characters",Toast.LENGTH_LONG).show();
+        }else if(!password.equals(passwordAgain)){
+            Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show();
+        }else{
+            mAuth.createUserWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+
+                                Toast.makeText(SignupActivity.this,"Sign up Success!",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(SignupActivity.this, "Error..."+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        }
+                    });
+
+        }
+    }
+
+    public static boolean isEmail(String email){
+        if (null==email || "".equals(email))
+            return false;
+        Matcher m = p.matcher(email);
+        return m.matches();
     }
 }

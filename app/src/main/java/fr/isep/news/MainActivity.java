@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
     private CategoryRecyclerVAdapter categotyRecyclerVAdapter;
     private NewsRecyclerVAdapter newsRecyclerVAdapter;
 
+    private ImageView Click_to_Profile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,15 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
         NewsRV = findViewById(R.id.News);
         CategoryRV = findViewById(R.id.Category);
         hint = findViewById(R.id.Hint);
+        Click_to_Profile = findViewById(R.id.manageAccount);
+        Click_to_Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            }
+        });
+
+
 
         categotyRecyclerVAdapter = new CategoryRecyclerVAdapter(categoryArrayList,this,this::onClickCategory);
         newsRecyclerVAdapter = new NewsRecyclerVAdapter(newsdetailArrayList,this);
