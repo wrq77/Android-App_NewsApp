@@ -1,8 +1,12 @@
 package fr.isep.news;
 
+
+import static android.service.controls.ControlsProviderService.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,12 +17,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+/*TODO
+   1. Create the user object to optimize the code
+   2. Separate the db code
+ */
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -31,6 +46,13 @@ public class SignupActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    //the db
+    private FirebaseFirestore db;
+
+    String userId;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +60,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         //check to see if the user is currently signed in.
         if(mAuth.getCurrentUser()!=null){
@@ -91,6 +114,27 @@ public class SignupActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
                                 Toast.makeText(SignupActivity.this,"Sign up Success!",Toast.LENGTH_SHORT).show();
+
+                                userId = mAuth.getCurrentUser().getUid();
+                                //automatically create the collection
+                                DocumentReference documentReference = db.collection("user").document(userId);
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("userName", userName);
+                                user.put("email", email);
+
+                                // insert user
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d(TAG, "user is added with ID: " + userId);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.w(TAG, "Error adding document" + e.toString());
+                                    }
+                                });
+
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                             } else {

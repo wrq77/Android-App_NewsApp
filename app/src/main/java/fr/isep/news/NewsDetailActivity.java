@@ -21,7 +21,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     private String NewsTitle,NewsAuthor,NewsPublishAt,NewsContent,NewsImageURL,NewsURL,NewsDescription;
 
     private TextView titleTV, authorTV, publishTV, descriptionTV, contentTV;
-    private ImageView newsImage, ClickToHomePage;
+    private ImageView newsImage, ClickToHomePage, ClickToProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,8 @@ public class NewsDetailActivity extends AppCompatActivity {
         newsImage = findViewById(R.id.NewsImage);
         ClickToHomePage = findViewById(R.id.home);
         ClickToHomePage.setOnClickListener(this::ClicktoHomePage);
+        ClickToProfile = findViewById(R.id.manageAccount);
+        ClickToProfile.setOnClickListener(this::ClicktoProfile);
 
         titleTV.setText(NewsTitle);
         authorTV.setText("Author: "+NewsAuthor);
@@ -53,6 +55,10 @@ public class NewsDetailActivity extends AppCompatActivity {
         contentTV.setText(NewsContent);
 
         Picasso.get().load(NewsImageURL).into(newsImage);
+    }
+
+    private void ClicktoProfile(View view) {
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
     }
 
     private void ClicktoHomePage(View view) {

@@ -8,7 +8,8 @@
         android:id="@+id/LogOut_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:background="@drawable/btn_selector"
+        android:text="Sign Out"
         tools:layout_editor_absoluteX="175dp"
         tools:layout_editor_absoluteY="333dp"
         tools:ignore="MissingConstraints" />

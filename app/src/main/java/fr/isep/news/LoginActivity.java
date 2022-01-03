@@ -32,6 +32,10 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser()!=null){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
 
         Btnsignup = findViewById(R.id.Click_to_SignUp);
         Btnsignup.setOnClickListener(new View.OnClickListener() {
