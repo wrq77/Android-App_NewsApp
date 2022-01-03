@@ -4,9 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.23645833333333333" />
+        <entry key="app/src/main/res/drawable-v24/btn_bg_normal.xml" value="0.29814814814814816" />
+        <entry key="app/src/main/res/drawable-v24/btn_bg_pressed.xml" value="0.19444444444444445" />
+        <entry key="app/src/main/res/drawable-v24/btn_selector.xml" value="0.29814814814814816" />
         <entry key="app/src/main/res/drawable-v24/category_frame_pressed.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/ic_email_black_24dp.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable-v24/ic_library_books_black_24dp.xml" value="0.2712962962962963" />
+        <entry key="app/src/main/res/drawable-v24/ic_lock_black_24dp.xml" value="0.30185185185185187" />
+        <entry key="app/src/main/res/drawable-v24/ic_perm_identity_black_24dp.xml" value="0.30185185185185187" />
+        <entry key="app/src/main/res/drawable-v24/input_frame.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/drawable/category_frame.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/category_frame_normal.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/category_selector.xml" value="0.262037037037037" />
@@ -17,8 +24,11 @@
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2712962962962963" />
         <entry key="app/src/main/res/drawable/image_frame.xml" value="0.11944444444444445" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.26766304347826086" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2368659420289855" />
         <entry key="app/src/main/res/layout/activity_newsdetail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.26766304347826086" />
+        <entry key="app/src/main/res/layout/activity_welcome.xml" value="0.26766304347826086" />
         <entry key="app/src/main/res/layout/category_frame.xml" value="0.2884963768115942" />
         <entry key="app/src/main/res/layout/category_items.xml" value="0.2884963768115942" />
         <entry key="app/src/main/res/layout/news_items.xml" value="0.2884963768115942" />

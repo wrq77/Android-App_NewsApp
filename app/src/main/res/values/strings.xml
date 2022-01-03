@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">News</string>
+    <string name="click_to_login"><u>Already have an account?</u></string>
+    <string name="click_to_signup"><u>SignUp</u></string>
 </resources>
