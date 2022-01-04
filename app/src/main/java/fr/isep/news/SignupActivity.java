@@ -121,6 +121,7 @@ public class SignupActivity extends AppCompatActivity {
                                 Map<String, Object> user = new HashMap<>();
                                 user.put("userName", userName);
                                 user.put("email", email);
+                                user.put("password", password);
 
                                 // insert user
                                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
