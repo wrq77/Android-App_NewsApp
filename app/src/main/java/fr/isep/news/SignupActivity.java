@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 
 /*TODO
    1. Create the user object to optimize the code
-   2. Separate the db code
+   2. Maybe Separate the db code
  */
 
 public class SignupActivity extends AppCompatActivity {

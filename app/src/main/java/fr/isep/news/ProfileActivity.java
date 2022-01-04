@@ -19,6 +19,14 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+
+/*
+ TODO
+  1. update user's profile(username and email)
+  2. show the category and manage it
+  3. maybe reset the password
+ */
+
 public class ProfileActivity extends AppCompatActivity {
 
     private Button logout;

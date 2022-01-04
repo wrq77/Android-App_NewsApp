@@ -10,13 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
+/*
+   TODO :
+      1. HOW to get the full content of the truncated text of api
+      2. Click the "Heart" to store the news to the database
+   */
+
 public class NewsDetailActivity extends AppCompatActivity {
 
-    /* TODO :
-       1. HOW to get the full content of the truncated text of api
-       2. Click the "Heart" to store the news to the database
-       3. Click the button to the profile management
-    */
 
     private String NewsTitle,NewsAuthor,NewsPublishAt,NewsContent,NewsImageURL,NewsURL,NewsDescription;
 

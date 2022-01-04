@@ -25,7 +25,12 @@ import fr.isep.news.Model.Newsdetail;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
+/*
+   TODO
+    1. Change to users to choose the category and show it
+    2. Click the button to the collection page
+    3. Create the collection page(activity and layout)
+ */
 public class MainActivity extends AppCompatActivity implements CategoryRecyclerVAdapter.CategoryClickInterface{
 
     private RecyclerView NewsRV, CategoryRV;
@@ -79,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
     }
 
     private void getCategory(){
-        //TODO change to users to choose the category
+
         categoryArrayList.add(new Category("technology"));
         categoryArrayList.add(new Category("health"));
         categoryArrayList.add(new Category("entertainment"));
