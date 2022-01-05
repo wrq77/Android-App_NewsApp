@@ -55,7 +55,10 @@ public class NewsDetailActivity extends AppCompatActivity {
         descriptionTV.setText(NewsDescription);
         contentTV.setText(NewsContent);
 
+
         Picasso.get().load(NewsImageURL).into(newsImage);
+
+
     }
 
     private void ClicktoProfile(View view) {

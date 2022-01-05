@@ -55,7 +55,9 @@ public class NewsRecyclerVAdapter extends RecyclerView.Adapter<NewsRecyclerVAdap
         //Replace the contents of a view
         Newsdetail CurrentArticle = DataSet.get(position);
         holder.NewTitle.setText(CurrentArticle.getTitle());
+
         Picasso.get().load(CurrentArticle.getUrlToImage()).into(holder.Image);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
