@@ -94,11 +94,11 @@
         <ImageView
             android:id="@+id/imageFrame"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="200dp"
             android:layout_below="@+id/Update_button"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/image_frame" >
+            android:src="@drawable/image_frame">
 
 
         </ImageView>
@@ -116,7 +116,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Subscribed category: "
                 android:textColor="@color/black"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textStyle="bold"/>
 
             <TextView
@@ -128,7 +128,7 @@
                 android:layout_below="@+id/HintforCategory"
                 android:text="Technology\nEntertainment"
                 android:textColor="@color/black"
-                android:textSize="22dp"
+                android:textSize="15dp"
                 android:textStyle="bold"/>
 
 
@@ -149,21 +149,18 @@
         </RelativeLayout>
 
 
-
-
         <Button
             android:id="@+id/LogOut_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imageFrame"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="18dp"
             android:background="@drawable/input_frame"
             android:padding="8dp"
-            android:layout_marginTop="18dp"
             android:text="Sign Out"
             android:textSize="15dp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/imageFrame"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

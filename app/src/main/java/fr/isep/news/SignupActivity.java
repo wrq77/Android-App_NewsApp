@@ -30,9 +30,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.isep.news.Model.User;
+
 /*TODO
-   1. Create the user object to optimize the code
-   2. Maybe Separate the db code
+   1. Maybe Separate the db code
  */
 
 public class SignupActivity extends AppCompatActivity {
@@ -118,13 +119,15 @@ public class SignupActivity extends AppCompatActivity {
                                 userId = mAuth.getCurrentUser().getUid();
                                 //automatically create the collection
                                 DocumentReference documentReference = db.collection("user").document(userId);
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("userName", userName);
-                                user.put("email", email);
-                                user.put("password", password);
+
+                                User newuser = new User(userName,email,password);
+//                                Map<String, Object> user = new HashMap<>();
+//                                user.put("userName", userName);
+//                                user.put("email", email);
+//                                user.put("password", password);
 
                                 // insert user
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                documentReference.set(newuser).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         Log.d(TAG, "user is added with ID: " + userId);
