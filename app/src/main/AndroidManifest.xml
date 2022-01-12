@@ -41,6 +41,10 @@
         <activity android:name=".ProfileActivity">
 
         </activity>
+
+        <activity android:name=".CategoryActivity">
+
+        </activity>
     </application>
 
 </manifest>

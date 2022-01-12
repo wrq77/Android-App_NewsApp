@@ -39,6 +39,11 @@ dependencies {
     // JSON Converter
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
+    //https://projectlombok.org/setup/android for getter and setter
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'

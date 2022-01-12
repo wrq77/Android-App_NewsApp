@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+
     private Button Wbtn;
 
     int SPLASH_TIME = 5000; //5 seconds

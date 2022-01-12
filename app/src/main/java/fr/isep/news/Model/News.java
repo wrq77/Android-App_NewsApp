@@ -2,6 +2,11 @@ package fr.isep.news.Model;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class News {
     private String status;
     private int totalResults;
@@ -13,27 +18,4 @@ public class News {
         this.articles = news;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getTotalResults() {
-        return totalResults;
-    }
-
-    public void setTotalResults(int totalResults) {
-        this.totalResults = totalResults;
-    }
-
-    public ArrayList<Newsdetail> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(ArrayList<Newsdetail> articles) {
-        this.articles = articles;
-    }
 }

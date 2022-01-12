@@ -64,10 +64,10 @@ public class SignupActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         //check to see if the user is currently signed in.
-        if(mAuth.getCurrentUser()!=null){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        }
+//        if(mAuth.getCurrentUser()!=null){
+//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(intent);
+//        }
 
         EditEmail = findViewById(R.id.EnterEmail);
         EditUsername = findViewById(R.id.EnterUsername);
