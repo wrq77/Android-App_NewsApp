@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import fr.isep.news.databinding.ActivityWelcomeBinding;
+
+
 public class WelcomeActivity extends AppCompatActivity {
 
-
-    private Button Wbtn;
+    private ActivityWelcomeBinding binding;
 
     int SPLASH_TIME = 5000; //5 seconds
 
@@ -38,16 +38,13 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         };
 
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(SPLASH_TIME);
-                    message.what = 1;
-                    handler.sendMessage(message);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        thread = new Thread(() -> {
+            try {
+                Thread.sleep(SPLASH_TIME);
+                message.what = 1;
+                handler.sendMessage(message);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
 
@@ -60,16 +57,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
         thread.start();
 
-        Wbtn = findViewById(R.id.Wbtn_skip);
-        Wbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                message.what = 0;
-                handler.sendMessage(message);
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.WbtnSkip.setOnClickListener(v -> {
+            message.what = 0;
+            handler.sendMessage(message);
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
+
     }
 }

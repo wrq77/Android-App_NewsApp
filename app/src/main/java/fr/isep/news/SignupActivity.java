@@ -8,9 +8,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,24 +22,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.isep.news.Model.User;
+import fr.isep.news.databinding.ActivitySignupBinding;
 
-/*TODO
-   1. Maybe Separate the db code
- */
+
 
 public class SignupActivity extends AppCompatActivity {
 
-    private TextView Btnlogin;
-    private EditText EditEmail, EditUsername, EditPassword, EditPasswordAgain;
-    private Button BtnSignup;
+    private ActivitySignupBinding binding;
 
-    public static Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+
+    private static Pattern p = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
     //"\\w+@(\\w+.)+[a-z]{2,3}"
 
     private FirebaseAuth mAuth;
@@ -69,35 +63,24 @@ public class SignupActivity extends AppCompatActivity {
 //            startActivity(intent);
 //        }
 
-        EditEmail = findViewById(R.id.EnterEmail);
-        EditUsername = findViewById(R.id.EnterUsername);
-        EditPassword = findViewById(R.id.EnterPassword);
-        EditPasswordAgain = findViewById(R.id.EnterPasswordAgain);
+        binding = ActivitySignupBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        Btnlogin = findViewById(R.id.Click_to_login);
-        Btnlogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        binding.ClickToLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        BtnSignup = findViewById(R.id.Lbtn_signup);
-        BtnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signup();
-            }
-        });
+
+        binding.LbtnSignup.setOnClickListener(v -> signup());
     }
 
     private void signup() {
-        String email = EditEmail.getText().toString();
-        String userName = EditUsername.getText().toString();
-        String password = EditPassword.getText().toString();
-        String passwordAgain = EditPasswordAgain.getText().toString();
+        String email = binding.EnterEmail.getText().toString();
+        String userName = binding.EnterUsername.getText().toString();
+        String password = binding.EnterPassword.getText().toString();
+        String passwordAgain = binding.EnterPasswordAgain.getText().toString();
 
         if(!isEmail(email) || email.length() > 31){
             Toast.makeText(this, "Email format error", Toast.LENGTH_SHORT).show();

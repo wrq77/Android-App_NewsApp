@@ -26,7 +26,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // https://developer.android.com/topic/libraries/view-binding?hl=zh-cn for ViewBinding
+    viewBinding {
+        enabled = true
+    }
 }
+
 
 dependencies {
 
@@ -42,7 +48,6 @@ dependencies {
     //https://projectlombok.org/setup/android for getter and setter
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
-
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'

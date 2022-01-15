@@ -27,6 +27,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.isep.news.databinding.ActivityNewsdetailBinding;
+import fr.isep.news.databinding.ActivityProfilemanagementBinding;
+
 
 
 /*
@@ -37,11 +40,7 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private Button logout, update;
-
-    private ImageView ClickToHomePage;
-
-    private TextInputLayout ProfileUserName, ProfileEmail;
+    private ActivityProfilemanagementBinding binding;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -63,18 +62,16 @@ public class ProfileActivity extends AppCompatActivity {
         userId = mAuth.getCurrentUser().getUid();
         documentReference = db.collection("user").document(userId);
 
+        binding = ActivityProfilemanagementBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ClickToHomePage = findViewById(R.id.home);
-        ClickToHomePage.setOnClickListener(this::ClicktoHomePage);
 
-        logout = findViewById(R.id.LogOut_button);
-        logout.setOnClickListener(this::LogOut);
+        binding.home.setOnClickListener(this::ClicktoHomePage);
 
-        update = findViewById(R.id.Update_button);
-        update.setOnClickListener(this::UpdateProfile);
+        binding.LogOutButton.setOnClickListener(this::LogOut);
 
-        ProfileUserName = findViewById(R.id.ProfileUserName);
-        ProfileEmail = findViewById(R.id.ProfileEmail);
+        binding.UpdateButton.setOnClickListener(this::UpdateProfile);
+
         showUserData();
 
     }
@@ -84,21 +81,21 @@ public class ProfileActivity extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                ProfileUserName.getEditText().setText(documentSnapshot.getString("userName"));
-                ProfileEmail.getEditText().setText(documentSnapshot.getString("email"));
+                binding.ProfileUserName.getEditText().setText(documentSnapshot.getString("userName"));
+                binding.ProfileEmail.getEditText().setText(documentSnapshot.getString("email"));
             }
         });
 
     }
 
     private void UpdateProfile(View view) {
-        final String email = ProfileEmail.getEditText().getText().toString().trim();
+        final String email = binding.ProfileEmail.getEditText().getText().toString().trim();
         mAuth.getCurrentUser().updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Map<String,Object> user = new HashMap<>();
                 user.put("email",email);
-                user.put("userName",ProfileUserName.getEditText().getText().toString());
+                user.put("userName",binding.ProfileUserName.getEditText().getText().toString());
                 documentReference.update(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

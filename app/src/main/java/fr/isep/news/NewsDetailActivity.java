@@ -3,12 +3,13 @@ package fr.isep.news;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
+
+import fr.isep.news.databinding.ActivityNewsdetailBinding;
 
 /*
    TODO :
@@ -18,11 +19,11 @@ import com.squareup.picasso.Picasso;
 
 public class NewsDetailActivity extends AppCompatActivity {
 
-
+    private ActivityNewsdetailBinding binding;
     private String NewsTitle,NewsAuthor,NewsPublishAt,NewsContent,NewsImageURL,NewsURL,NewsDescription;
 
-    private TextView titleTV, authorTV, publishTV, descriptionTV, contentTV;
-    private ImageView newsImage, ClickToHomePage, ClickToProfile;
+//    private TextView titleTV, authorTV, publishTV, descriptionTV, contentTV;
+//    private ImageView newsImage, ClickToHomePage, ClickToProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +38,22 @@ public class NewsDetailActivity extends AppCompatActivity {
         NewsImageURL = getIntent().getStringExtra("NewsImageURL");
         NewsURL = getIntent().getStringExtra("NewsURL");
 
-        titleTV = findViewById(R.id.NewsTitle);
-        authorTV = findViewById(R.id.NewsAuthor);
-        publishTV = findViewById(R.id.NewsPublishAt);
-        descriptionTV = findViewById(R.id.NewsDescription);
-        contentTV = findViewById(R.id.NewsContent);
 
-        newsImage = findViewById(R.id.NewsImage);
-        ClickToHomePage = findViewById(R.id.home);
-        ClickToHomePage.setOnClickListener(this::ClicktoHomePage);
-        ClickToProfile = findViewById(R.id.manageAccount);
-        ClickToProfile.setOnClickListener(this::ClicktoProfile);
-
-        titleTV.setText(NewsTitle);
-        authorTV.setText("Author: "+NewsAuthor);
-        publishTV.setText("Publish Date: "+NewsPublishAt);
-        descriptionTV.setText(NewsDescription);
-        contentTV.setText(NewsContent);
+        binding = ActivityNewsdetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 
-        Picasso.get().load(NewsImageURL).into(newsImage);
+        binding.home.setOnClickListener(this::ClicktoHomePage);
+        binding.manageAccount.setOnClickListener(this::ClicktoProfile);
+
+        binding.NewsTitle.setText(NewsTitle);
+        binding.NewsAuthor.setText("Author: "+NewsAuthor);
+        binding.NewsPublishAt.setText("Publish Date: "+NewsPublishAt);
+        binding.NewsDescription.setText(NewsDescription);
+        binding.NewsContent.setText(NewsContent);
+
+
+        Picasso.get().load(NewsImageURL).into(binding.NewsImage);
 
 
     }
