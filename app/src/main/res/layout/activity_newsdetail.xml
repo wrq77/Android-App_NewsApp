@@ -107,9 +107,23 @@
                     android:id="@+id/NewsContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:text="Content"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/ReadMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="5dp"
+                    android:text=" Read More About this News... "
+                    android:textSize="15dp"
+                    android:background="@drawable/btn_selector"
+                    android:layout_gravity="center"
+                    />
 
             </LinearLayout>
 

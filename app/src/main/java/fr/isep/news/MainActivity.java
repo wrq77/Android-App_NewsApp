@@ -37,6 +37,7 @@ import retrofit2.Response;
    TODO
     1. Create the collection page(activity and layout)
  */
+
 public class MainActivity extends AppCompatActivity implements CategoryRecyclerVAdapter.CategoryClickInterface{
 
     private ActivityMainBinding binding;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+
     String userId,CategoryName;
 
 

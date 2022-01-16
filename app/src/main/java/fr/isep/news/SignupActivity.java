@@ -1,8 +1,5 @@
 package fr.isep.news;
 
-
-import static android.service.controls.ControlsProviderService.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,7 +24,6 @@ import java.util.regex.Pattern;
 
 import fr.isep.news.Model.User;
 import fr.isep.news.databinding.ActivitySignupBinding;
-
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -107,12 +103,12 @@ public class SignupActivity extends AppCompatActivity {
                                 documentReference.set(newuser).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Log.d(TAG, "user is added with ID: " + userId);
+                                        Log.d("tag", "user is added with ID: " + userId);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Log.w(TAG, "Error adding document" + e.toString());
+                                        Log.d("tag", "Error adding document" + e.toString());
                                     }
                                 });
 

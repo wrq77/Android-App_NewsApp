@@ -1,6 +1,7 @@
 package fr.isep.news;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,8 +14,7 @@ import fr.isep.news.databinding.ActivityNewsdetailBinding;
 
 /*
    TODO :
-      1. HOW to get the full content of the truncated text of api
-      2. Click the "Heart" to store the news to the database
+      1. Click the "Heart" to store the news to the database
    */
 
 public class NewsDetailActivity extends AppCompatActivity {
@@ -22,8 +22,6 @@ public class NewsDetailActivity extends AppCompatActivity {
     private ActivityNewsdetailBinding binding;
     private String NewsTitle,NewsAuthor,NewsPublishAt,NewsContent,NewsImageURL,NewsURL,NewsDescription;
 
-//    private TextView titleTV, authorTV, publishTV, descriptionTV, contentTV;
-//    private ImageView newsImage, ClickToHomePage, ClickToProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         NewsImageURL = getIntent().getStringExtra("NewsImageURL");
         NewsURL = getIntent().getStringExtra("NewsURL");
 
+        String[] temp = NewsContent.split("\\[");
 
         binding = ActivityNewsdetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -50,12 +49,21 @@ public class NewsDetailActivity extends AppCompatActivity {
         binding.NewsAuthor.setText("Author: "+NewsAuthor);
         binding.NewsPublishAt.setText("Publish Date: "+NewsPublishAt);
         binding.NewsDescription.setText(NewsDescription);
-        binding.NewsContent.setText(NewsContent);
+        binding.NewsContent.setText(temp[0]);
 
 
         Picasso.get().load(NewsImageURL).into(binding.NewsImage);
 
+        binding.ReadMore.setOnClickListener(this::ReadMore);
 
+
+    }
+
+    //Jump to show the source and all of the news
+    private void ReadMore(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(NewsURL));
+        startActivity(intent);
     }
 
     private void ClicktoProfile(View view) {
