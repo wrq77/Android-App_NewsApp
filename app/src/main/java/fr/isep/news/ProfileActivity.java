@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,7 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.isep.news.databinding.ActivityNewsdetailBinding;
 import fr.isep.news.databinding.ActivityProfilemanagementBinding;
 
 
@@ -45,8 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
-    //a document location in a Firestore database
-    private  DocumentReference documentReference;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     String userId;
 
@@ -56,11 +51,27 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilemanagement);
 
+
+//      Listener called when there is a change in the authentication state
+        authStateListener = new FirebaseAuth.AuthStateListener(){
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null){
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                }
+                else {
+                    showUserData();
+                }
+            }
+        };
+
         mAuth = FirebaseAuth.getInstance();
+        mAuth.addAuthStateListener(authStateListener);
+
         db = FirebaseFirestore.getInstance();
 
         userId = mAuth.getCurrentUser().getUid();
-        documentReference = db.collection("user").document(userId);
+
 
         binding = ActivityProfilemanagementBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -72,24 +83,33 @@ public class ProfileActivity extends AppCompatActivity {
 
         binding.UpdateButton.setOnClickListener(this::UpdateProfile);
 
-        showUserData();
+
 
     }
 
 
+
     private void showUserData() {
+        DocumentReference documentReference = db.collection("user").document(userId);
+
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                binding.ProfileUserName.getEditText().setText(documentSnapshot.getString("userName"));
-                binding.ProfileEmail.getEditText().setText(documentSnapshot.getString("email"));
+
+                    if (e == null && documentSnapshot.exists()) {
+                        binding.ProfileUserName.getEditText().setText(documentSnapshot.getString("userName"));
+                        binding.ProfileEmail.getEditText().setText(documentSnapshot.getString("email"));
+                    }else{
+                        Log.d("tag", "onEvent: Document do not exists");
+                    }
+
             }
         });
-
     }
 
     private void UpdateProfile(View view) {
         final String email = binding.ProfileEmail.getEditText().getText().toString().trim();
+        DocumentReference documentReference = db.collection("user").document(userId);
         mAuth.getCurrentUser().updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -106,7 +126,7 @@ public class ProfileActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error updating" + e.toString());
+                Log.d("tag", "Error updating" + e.toString());
                 Toast.makeText(ProfileActivity.this, "Error..."+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -119,10 +139,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void LogOut(View view) {
         mAuth.signOut();
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
-        finish();
     }
+
 
     private void ClicktoHomePage(View view) {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));

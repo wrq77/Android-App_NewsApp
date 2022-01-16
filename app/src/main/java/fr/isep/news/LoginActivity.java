@@ -29,12 +29,14 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+
+//       // check to see if the user is currently signed in.
 //        if(mAuth.getCurrentUser()!=null) {
+//            System.out.println("a user is logged in");
 //            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //            startActivity(intent);
 //        }
 
-//
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
