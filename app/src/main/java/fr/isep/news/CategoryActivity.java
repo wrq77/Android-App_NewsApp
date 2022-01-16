@@ -28,10 +28,11 @@ import fr.isep.news.databinding.ActivitySelectcategoryBinding;
 public class CategoryActivity  extends AppCompatActivity {
 
     private ActivitySelectcategoryBinding binding;
+
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    String userId,CategoryName;
 
+    String userId,CategoryName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +53,13 @@ public class CategoryActivity  extends AppCompatActivity {
     }
 
     private void showCategory() {
-        //获取category数据库内容
+        //Get database content for category
         DocumentReference documentReference = db.collection("Category").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (e == null && documentSnapshot.exists()) {
                     CategoryName = documentSnapshot.getString("categoryName");
-                    //根据,分割category字符串
 
                     String[] as = CategoryName.split(",");
                     for (int i = 0; i < as.length; i++) {
@@ -96,13 +96,12 @@ public class CategoryActivity  extends AppCompatActivity {
 
     private void Selcategory(View v) {
 
-
-        /**【所有复选框id数组】**/
+        //All checkbox id array
         int chk_id[] = {R.id.business, R.id.entertainment, R.id.general, R.id.health,
                 R.id.science, R.id.sports, R.id.technology};
 
 
-        /**【循环为所有复选框注册监听事件】**/
+        //Register listener events for all checkboxes in a loop
         String category = "";
         for (int id : chk_id) {
             CheckBox chk = findViewById(id);
@@ -124,7 +123,7 @@ public class CategoryActivity  extends AppCompatActivity {
         documentReference.set(categoryObj).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Log.d(TAG, "user is added with ID: " + userId);
+                Log.d(TAG, "Category is added with ID: " + userId);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -136,9 +135,7 @@ public class CategoryActivity  extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
 
-
-        Toast.makeText(CategoryActivity.this, "select success", Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(CategoryActivity.this, "Select success", Toast.LENGTH_SHORT).show();
 
     }
 

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import fr.isep.news.R;
 import fr.isep.news.Model.Category;
+import fr.isep.news.databinding.CategoryItemsBinding;
 
 public class CategoryRecyclerVAdapter extends RecyclerView.Adapter<CategoryRecyclerVAdapter.ViewHolder>{
     private ArrayList<Category> DataSet;
@@ -31,19 +31,32 @@ public class CategoryRecyclerVAdapter extends RecyclerView.Adapter<CategoryRecyc
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+
         private TextView CategoryTextView;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            CategoryTextView = itemView.findViewById(R.id.CategoryName);
+
+//        public ViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//            CategoryTextView = itemView.findViewById(R.id.CategoryName);
+//        }
+
+        //Use ViewBinding
+        public ViewHolder(@NonNull CategoryItemsBinding binding) {
+            super(binding.getRoot());
+            CategoryTextView = binding.CategoryName;
         }
     }
 
     @NonNull
     @Override
     public CategoryRecyclerVAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.category_items, viewGroup, false);
-        return new ViewHolder(view);
+
+//        View view = LayoutInflater.from(viewGroup.getContext())
+//                .inflate(R.layout.category_items, viewGroup, false);
+//        return new ViewHolder(view);
+
+        //Use ViewBinding
+        CategoryItemsBinding binding = CategoryItemsBinding.inflate(LayoutInflater.from(viewGroup.getContext()), viewGroup, false);
+        return  new ViewHolder(binding);
     }
 
     @Override

@@ -16,8 +16,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import fr.isep.news.NewsDetailActivity;
-import fr.isep.news.R;
 import fr.isep.news.Model.Newsdetail;
+import fr.isep.news.databinding.NewsItemsBinding;
 
 public class NewsRecyclerVAdapter extends RecyclerView.Adapter<NewsRecyclerVAdapter.ViewHolder>{
 
@@ -33,20 +33,32 @@ public class NewsRecyclerVAdapter extends RecyclerView.Adapter<NewsRecyclerVAdap
         private TextView NewTitle;
         private ImageView Image;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            NewTitle = itemView.findViewById(R.id.titleNews);
-            Image = itemView.findViewById(R.id.imageNews);
+//        public ViewHolder(@NonNull View itemView) {
+//            super(itemView);
+//            NewTitle = itemView.findViewById(R.id.titleNews);
+//            Image = itemView.findViewById(R.id.imageNews);
+//        }
+
+        //Use ViewBinding
+        public ViewHolder(@NonNull NewsItemsBinding binding) {
+            super(binding.getRoot());
+            NewTitle = binding.titleNews;
+            Image = binding.imageNews;
         }
     }
 
     @NonNull
     @Override
     public NewsRecyclerVAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view to define the UI of the list item
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.news_items, viewGroup, false);
-        return new ViewHolder(view);
+
+//        // Create a new view to define the UI of the list item
+//        View view = LayoutInflater.from(viewGroup.getContext())
+//                .inflate(R.layout.news_items, viewGroup, false);
+//        return new ViewHolder(view);
+
+        //Use ViewBinding
+        NewsItemsBinding binding = NewsItemsBinding.inflate(LayoutInflater.from(viewGroup.getContext()), viewGroup, false);
+        return  new NewsRecyclerVAdapter.ViewHolder(binding);
     }
 
     @Override

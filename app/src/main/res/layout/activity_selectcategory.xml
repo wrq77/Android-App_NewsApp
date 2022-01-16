@@ -62,7 +62,6 @@
             android:layout_height="50dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_frame"
-            android:checked="true"
             android:drawablePadding="10dp"
             android:text="Entertainment" />
 
