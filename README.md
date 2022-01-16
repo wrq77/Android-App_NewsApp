@@ -1,7 +1,6 @@
-# NewsApp
-## WANG Ruiqi 61571
-## XU Yuan 6154
-
+# II.3510 - Project- NewsApp
+### WANG Ruiqi 61571 
+### XU Yuan 61548
 
 Functions we have alreage implemented:
 
