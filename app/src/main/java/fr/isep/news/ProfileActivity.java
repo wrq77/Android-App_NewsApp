@@ -1,7 +1,5 @@
 package fr.isep.news;
 
-import static android.service.controls.ControlsProviderService.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,13 +24,6 @@ import java.util.Map;
 
 import fr.isep.news.databinding.ActivityProfilemanagementBinding;
 
-
-
-/*
- TODO
-  1. show the category and manage it
-  2. maybe reset the password
- */
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -61,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 else {
                     showUserData();
+                    showCategory();
                 }
             }
         };
@@ -83,7 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         binding.UpdateButton.setOnClickListener(this::UpdateProfile);
 
-
+        binding.manageChannelButton.setOnClickListener(this::updateCategory);
 
     }
 
@@ -126,6 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+
                 Log.d("tag", "Error updating" + e.toString());
                 Toast.makeText(ProfileActivity.this, "Error..."+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -135,7 +128,24 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    private void showCategory() {
 
+        DocumentReference documentReference = db.collection("Category").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (e == null && documentSnapshot.exists()) {
+                binding.ChosenCategory.setText(documentSnapshot.getString("categoryName"));
+                }else{
+                    Log.d("tag", "onEvent: Document do not exists");
+                }
+            }
+        });
+    }
+
+    private void updateCategory(View view) {
+        startActivity(new Intent(getApplicationContext(), CategoryActivity.class));
+    }
 
     private void LogOut(View view) {
         mAuth.signOut();

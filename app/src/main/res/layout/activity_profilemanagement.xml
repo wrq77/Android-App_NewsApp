@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/Grey_bg"
     tools:context=".ProfileActivity">
 
@@ -54,8 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
-                android:drawablePadding="10dp"
-                android:text="Ruiqi" />
+                android:drawablePadding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,8 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_email_black_24dp"
-                android:drawablePadding="10dp"
-                android:text="ruiqi@gmail.com" />
+                android:drawablePadding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,18 +116,19 @@
                 android:textSize="20dp"
                 android:textStyle="bold"/>
 
+
             <TextView
                 android:id="@+id/ChosenCategory"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
                 android:layout_below="@+id/HintforCategory"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
                 android:text="Technology\nEntertainment"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15dp"
-                android:textStyle="bold"/>
-
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/manageChannel_button"

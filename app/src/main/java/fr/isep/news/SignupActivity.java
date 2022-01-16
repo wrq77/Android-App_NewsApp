@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -81,7 +80,7 @@ public class SignupActivity extends AppCompatActivity {
             Toast.makeText(this, "Email format error", Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(email) || TextUtils.isEmpty(userName) || TextUtils.isEmpty(password) || TextUtils.isEmpty(passwordAgain)){
             Toast.makeText(this, "Please fill in all the boxes",Toast.LENGTH_LONG).show();
-        }else if(password.length()<=6){
+        }else if(password.length()<6){
             Toast.makeText(this, "Password Must be >= 6 Characters",Toast.LENGTH_LONG).show();
         }else if(!password.equals(passwordAgain)){
             Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show();
@@ -98,7 +97,7 @@ public class SignupActivity extends AppCompatActivity {
                                 //automatically create the collection
                                 DocumentReference documentReference = db.collection("user").document(userId);
 
-                                User newuser = new User(userName,email,password);
+                                User newuser = new User(userName,email);
 //                                Map<String, Object> user = new HashMap<>();
 //                                user.put("userName", userName);
 //                                user.put("email", email);
@@ -117,7 +116,7 @@ public class SignupActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
                                 startActivity(intent);
                             } else {
                                 Toast.makeText(SignupActivity.this, "Error..."+task.getException().getMessage(), Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package fr.isep.news;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,9 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 
@@ -26,9 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 /*
    TODO
-    1. Change to users to choose the category and show it
-    2. Click the button to the collection page
-    3. Create the collection page(activity and layout)
+    1. Create the collection page(activity and layout)
  */
 public class MainActivity extends AppCompatActivity implements CategoryRecyclerVAdapter.CategoryClickInterface{
 
@@ -40,11 +47,19 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
     private CategoryRecyclerVAdapter categotyRecyclerVAdapter;
     private NewsRecyclerVAdapter newsRecyclerVAdapter;
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+    String userId,CategoryName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -77,14 +92,30 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
 
     private void getCategory(){
 
-        categoryArrayList.add(new Category("technology"));
-        categoryArrayList.add(new Category("health"));
-        categoryArrayList.add(new Category("entertainment"));
-        categoryArrayList.add(new Category("sports"));
-        categoryArrayList.add(new Category("business"));
-        categoryArrayList.add(new Category("general"));
+        DocumentReference documentReference = db.collection("Category").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                if (e == null && documentSnapshot.exists()) {
+                CategoryName = documentSnapshot.getString("categoryName");
+                //根据,分割category字符串
+                String[] as = CategoryName.split(",");
+                for (int i = 0; i < as.length; i++) {
+                    if(as[i].equals("Business")){categoryArrayList.add(new Category("business"));}
+                    if(as[i].equals("Entertainment")){categoryArrayList.add(new Category("entertainment"));}
+                    if(as[i].equals("General")){ categoryArrayList.add(new Category("general"));}
+                    if(as[i].equals("Health")){categoryArrayList.add(new Category("health"));}
+                    if(as[i].equals("Science")){categoryArrayList.add(new Category("science"));}
+                    if(as[i].equals("Sports")){ categoryArrayList.add(new Category("sports"));}
+                    if(as[i].equals("Technology")){ categoryArrayList.add(new Category("technology"));}
+                }
+                }else{
+                    Log.d("tag", "onEvent: Document do not exists");
+                }
+                categotyRecyclerVAdapter.notifyDataSetChanged();
+            }
 
-        categotyRecyclerVAdapter.notifyDataSetChanged();
+        });
 
     }
 
