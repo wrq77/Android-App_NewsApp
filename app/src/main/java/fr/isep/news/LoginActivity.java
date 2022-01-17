@@ -3,6 +3,7 @@ package fr.isep.news;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,12 +31,12 @@ public class LoginActivity extends AppCompatActivity{
 
         mAuth = FirebaseAuth.getInstance();
 
-//       // check to see if the user is currently signed in.
-//        if(mAuth.getCurrentUser()!=null) {
-//            System.out.println("a user is logged in");
-//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivity(intent);
-//        }
+       // check to see if the user is currently signed in.
+        if(mAuth.getCurrentUser()!=null) {
+            Log.d("tag", "A Uer already Login");
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

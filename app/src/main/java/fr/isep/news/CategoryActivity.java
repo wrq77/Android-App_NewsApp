@@ -1,6 +1,5 @@
 package fr.isep.news;
 
-import static android.service.controls.ControlsProviderService.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -54,7 +53,7 @@ public class CategoryActivity  extends AppCompatActivity {
 
     private void showCategory() {
         //Get database content for category
-        DocumentReference documentReference = db.collection("Category").document(userId);
+        DocumentReference documentReference = db.collection("category").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -115,7 +114,7 @@ public class CategoryActivity  extends AppCompatActivity {
             }
         }
 
-        DocumentReference documentReference = db.collection("Category").document(userId);
+        DocumentReference documentReference = db.collection("category").document(userId);
         Category categoryObj = new Category(category);
 
 
@@ -123,12 +122,12 @@ public class CategoryActivity  extends AppCompatActivity {
         documentReference.set(categoryObj).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Log.d(TAG, "Category is added with ID: " + userId);
+                Log.d("tag", "Category is added with ID: " + userId);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error adding document" + e.toString());
+                Log.d("tag", "Error adding document" + e.toString());
             }
         });
 

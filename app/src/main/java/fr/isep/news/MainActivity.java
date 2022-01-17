@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
 
     private void getCategory(){
 
-        DocumentReference documentReference = db.collection("Category").document(userId);
+        DocumentReference documentReference = db.collection("category").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {

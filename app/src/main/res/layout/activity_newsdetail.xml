@@ -57,8 +57,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_below="@+id/image_frame">
+                android:layout_below="@+id/image_frame"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/NewsTitle"
@@ -70,26 +70,25 @@
                     android:textStyle="bold" />
 
 
-
                 <TextView
                     android:id="@+id/NewsAuthor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_weight="1"
                     android:text="Author"
                     android:textColor="@color/Grey_deep"
-                    android:textSize="15dp"
-                    android:layout_weight="1"/>
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/NewsPublishAt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_weight="1"
                     android:text="Date"
                     android:textColor="@color/Grey_deep"
-                    android:textSize="15dp"
-                    android:layout_weight="1"/>
+                    android:textSize="15dp" />
 
 
                 <TextView
@@ -99,9 +98,9 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="10dp"
                     android:text="Description"
-                    android:textStyle="italic"
                     android:textColor="@color/Grey_deep"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:id="@+id/NewsContent"
@@ -116,14 +115,13 @@
                     android:id="@+id/ReadMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="10dp"
+                    android:background="@drawable/btn_selector"
                     android:padding="5dp"
                     android:text=" Read More About this News... "
-                    android:textSize="15dp"
-                    android:background="@drawable/btn_selector"
-                    android:layout_gravity="center"
-                    />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -155,9 +153,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
             android:background="@drawable/footer_selector"
-            android:src="@drawable/ic_favorite_border_black_24dp" />
+            android:src="@drawable/ic_add_black_24dp" />
+
 
 
         <ImageView
