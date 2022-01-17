@@ -131,7 +131,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void showCategory() {
 
-        DocumentReference documentReference = db.collection("Category").document(userId);
+        DocumentReference documentReference = db.collection("category").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
