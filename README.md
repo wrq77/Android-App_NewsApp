@@ -12,3 +12,4 @@ Functions we have alreage implemented:
 6. Profile Update
 7. Manage the Category
 8. Collect the News/unfavorite the News
+9. Show the collection list
