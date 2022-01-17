@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Grey_bg"
-    tools:context=".MainActivity">
+    tools:context=".CollectionActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -26,22 +26,29 @@
         </androidx.appcompat.widget.Toolbar>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Category"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/Hint"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
-            android:orientation="horizontal"
+            android:text="@string/hint_for_collection"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="15dp"
             android:padding="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:ignore="MissingConstraints"
-            tools:listitem="@layout/category_items" />
+         />
+
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/News"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/Category"
+            android:layout_below="@+id/Hint"
             android:orientation="vertical"
             android:padding="5dp"
             android:scrollbars="vertical"
@@ -49,17 +56,6 @@
             tools:layout_editor_absoluteX="0dp"
             tools:listitem="@layout/news_items" />
 
-        <TextView
-            android:id="@+id/Hint"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/Category"
-            android:gravity="center"
-            android:text="@string/main_hint"
-            android:textColor="@color/Grey_deep"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:visibility="visible" />
 
 
     </RelativeLayout>

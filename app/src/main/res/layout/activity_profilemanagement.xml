@@ -34,9 +34,9 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:gravity="center"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textColor="@color/black"
-            android:textSize="36dp"
+            android:textSize="36sp"
             android:textStyle="bold">
 
         </TextView>
@@ -47,12 +47,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Profile"
             android:layout_marginBottom="10dp"
-            android:hint="User Name">
+            android:hint="@string/hint_user_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+                android:drawableStart="@drawable/ic_perm_identity_black_24dp"
                 android:drawablePadding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,12 +63,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ProfileUserName"
             android:layout_marginBottom="10dp"
-            android:hint="Email">
+            android:hint="@string/hint_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
+                android:drawableStart="@drawable/ic_email_black_24dp"
                 android:drawablePadding="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -84,8 +84,8 @@
             android:layout_marginBottom="18dp"
             android:background="@drawable/input_frame"
             android:padding="8dp"
-            android:text="Update"
-            android:textSize="15dp"
+            android:text="@string/update"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -109,11 +109,11 @@
                 android:id="@+id/HintforCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:text="Subscribed category: "
+                android:text="@string/subscribed_category"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"/>
 
 
@@ -122,12 +122,12 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/HintforCategory"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:text="Technology\nEntertainment"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <Button
@@ -138,8 +138,8 @@
                 android:padding="8dp"
                 android:layout_marginTop="30dp"
                 android:layout_below="@+id/ChosenCategory"
-                android:text="Manage the Channel"
-                android:textSize="15dp"
+                android:text="@string/manage_the_channel"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
@@ -156,8 +156,8 @@
             android:layout_marginTop="18dp"
             android:background="@drawable/input_frame"
             android:padding="8dp"
-            android:text="Sign Out"
-            android:textSize="15dp"
+            android:text="@string/sign_out"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

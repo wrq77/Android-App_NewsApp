@@ -25,7 +25,6 @@ import fr.isep.news.Model.Newsdetail;
 import fr.isep.news.databinding.ActivityNewsdetailBinding;
 
 
-
 public class NewsDetailActivity extends AppCompatActivity {
 
     private ActivityNewsdetailBinding binding;
