@@ -11,3 +11,4 @@ Functions we have alreage implemented:
 5. Show News Detail
 6. Profile Update
 7. Manage the Category
+8. Collect the News/unfavorite the News
