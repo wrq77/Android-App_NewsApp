@@ -1,7 +1,9 @@
 package fr.isep.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +50,9 @@ public class CollectionActivity extends AppCompatActivity {
         binding = ActivityCollectionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.home.setOnClickListener(this::ClicktoHomePage);
+        binding.manageAccount.setOnClickListener(this::ClickToProfile);
+
         newsRecyclerVAdapter = new NewsRecyclerVAdapter(NewsArrayList,this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -78,5 +83,13 @@ public class CollectionActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void ClicktoHomePage(View view) {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
+    private void ClickToProfile(View view) {
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
     }
 }
