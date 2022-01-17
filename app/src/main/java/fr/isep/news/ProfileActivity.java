@@ -70,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         binding.home.setOnClickListener(this::ClicktoHomePage);
+        binding.CollectionNews.setOnClickListener(this::ClicktoCollection);
 
         binding.LogOutButton.setOnClickListener(this::LogOut);
 
@@ -154,5 +155,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void ClicktoHomePage(View view) {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    }
+
+
+    private void ClicktoCollection(View view) {
+        startActivity(new Intent(getApplicationContext(), CollectionActivity.class));
     }
 }

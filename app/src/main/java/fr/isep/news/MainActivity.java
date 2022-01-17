@@ -33,19 +33,16 @@ import fr.isep.news.databinding.ActivityMainBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-/*
-   TODO
-    1. Create the collection page(activity and layout)
- */
+
 
 public class MainActivity extends AppCompatActivity implements CategoryRecyclerVAdapter.CategoryClickInterface{
 
     private ActivityMainBinding binding;
 
-    private ArrayList<Newsdetail> newsdetailArrayList = new ArrayList<>();
-    private ArrayList<Category> categoryArrayList = new ArrayList<>();
+    private ArrayList<Newsdetail> NewsdetailArrayList = new ArrayList<>();
+    private ArrayList<Category> CategoryArrayList = new ArrayList<>();
 
-    private CategoryRecyclerVAdapter categotyRecyclerVAdapter;
+    private CategoryRecyclerVAdapter categoryRecyclerVAdapter;
     private NewsRecyclerVAdapter newsRecyclerVAdapter;
 
     private FirebaseAuth mAuth;
@@ -68,25 +65,32 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
         setContentView(binding.getRoot());
 
 
-        binding.manageAccount.setOnClickListener(v ->
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class)));
+        binding.manageAccount.setOnClickListener(this::ClickToProfile);
+        binding.CollectionNews.setOnClickListener(this::ClickToCollection);
 
-
-        categotyRecyclerVAdapter = new CategoryRecyclerVAdapter(categoryArrayList,this,this::onClickCategory);
-        newsRecyclerVAdapter = new NewsRecyclerVAdapter(newsdetailArrayList,this);
+        categoryRecyclerVAdapter = new CategoryRecyclerVAdapter(CategoryArrayList,this,this::onClickCategory);
+        newsRecyclerVAdapter = new NewsRecyclerVAdapter(NewsdetailArrayList,this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         binding.News.setLayoutManager(layoutManager);
         binding.News.setAdapter(newsRecyclerVAdapter);
 
-        binding.Category.setAdapter(categotyRecyclerVAdapter);
+        binding.Category.setAdapter(categoryRecyclerVAdapter);
         getCategory();
 
     }
 
+    private void ClickToProfile(View view) {
+        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+    }
+
+    private void ClickToCollection(View view) {
+        startActivity(new Intent(getApplicationContext(), CollectionActivity.class));
+    }
+
     @Override
     public void onClickCategory(int position) {
-        String categoryName = categoryArrayList.get(position).getCategoryName();
+        String categoryName = CategoryArrayList.get(position).getCategoryName();
         binding.Hint.setVisibility(View.INVISIBLE);
         getNews(categoryName);
 
@@ -103,18 +107,22 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
                 //根据,分割category字符串
                 String[] as = CategoryName.split(",");
                 for (int i = 0; i < as.length; i++) {
-                    if(as[i].equals("Business")){categoryArrayList.add(new Category("business"));}
-                    if(as[i].equals("Entertainment")){categoryArrayList.add(new Category("entertainment"));}
-                    if(as[i].equals("General")){ categoryArrayList.add(new Category("general"));}
-                    if(as[i].equals("Health")){categoryArrayList.add(new Category("health"));}
-                    if(as[i].equals("Science")){categoryArrayList.add(new Category("science"));}
-                    if(as[i].equals("Sports")){ categoryArrayList.add(new Category("sports"));}
-                    if(as[i].equals("Technology")){ categoryArrayList.add(new Category("technology"));}
+                    if(as[i].equals("Business")){
+                        CategoryArrayList.add(new Category("business"));}
+                    if(as[i].equals("Entertainment")){
+                        CategoryArrayList.add(new Category("entertainment"));}
+                    if(as[i].equals("General")){ CategoryArrayList.add(new Category("general"));}
+                    if(as[i].equals("Health")){
+                        CategoryArrayList.add(new Category("health"));}
+                    if(as[i].equals("Science")){
+                        CategoryArrayList.add(new Category("science"));}
+                    if(as[i].equals("Sports")){ CategoryArrayList.add(new Category("sports"));}
+                    if(as[i].equals("Technology")){ CategoryArrayList.add(new Category("technology"));}
                 }
                 }else{
                     Log.d("tag", "onEvent: Document do not exists");
                 }
-                categotyRecyclerVAdapter.notifyDataSetChanged();
+                categoryRecyclerVAdapter.notifyDataSetChanged();
             }
 
         });
@@ -122,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
     }
 
     private void getNews(String CategoryName){
-        newsdetailArrayList.clear();
+        NewsdetailArrayList.clear();
 
         String apiKey ="2a75f3dbcae446c4868c3e50e889dab7";
 
@@ -135,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
                 News news = response.body();
                 ArrayList<Newsdetail> newsdetails = news.getArticles();
                 for (int i = 0; i < newsdetails.size(); i++){
-                    newsdetailArrayList.add(new Newsdetail(newsdetails.get(i).getTitle(),newsdetails.get(i).getAuthor(),newsdetails.get(i).getPublishedAt(),
+                    NewsdetailArrayList.add(new Newsdetail(newsdetails.get(i).getTitle(),newsdetails.get(i).getAuthor(),newsdetails.get(i).getPublishedAt(),
                             newsdetails.get(i).getDescription(),newsdetails.get(i).getUrl(), newsdetails.get(i).getUrlToImage(),newsdetails.get(i).getContent()));
                 }
                 newsRecyclerVAdapter.notifyDataSetChanged();

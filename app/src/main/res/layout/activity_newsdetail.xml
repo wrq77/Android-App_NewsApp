@@ -167,13 +167,13 @@
 
 
         <ImageView
-            android:id="@+id/manageAccount"
+            android:id="@+id/CollectionNews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@drawable/footer_selector"
-            android:src="@drawable/ic_manage_accounts_black_24dp" />
+            android:src="@drawable/ic_collections_bookmark_black_24dp" />
 
     </RelativeLayout>
 

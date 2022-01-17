@@ -10,9 +10,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/category_selector"
         android:gravity="center"
-        android:text="category"
+        android:text="@string/category"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginEnd="3dp"/>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package fr.isep.news;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     private String userId;
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
 
         binding.home.setOnClickListener(this::ClicktoHomePage);
-        binding.manageAccount.setOnClickListener(this::ClicktoProfile);
+        binding.CollectionNews.setOnClickListener(this::ClickToCollection);
         binding.collect.setOnClickListener(this::CollectNews);
         binding.NotCollect.setOnClickListener(this::NotCollectNews);
 
@@ -154,8 +156,8 @@ public class NewsDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void ClicktoProfile(View view) {
-        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+    private void ClickToCollection(View view) {
+        startActivity(new Intent(getApplicationContext(), CollectionActivity.class));
     }
 
     private void ClicktoHomePage(View view) {
