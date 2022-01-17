@@ -2,18 +2,14 @@ package fr.isep.news;
 
 
 import android.content.Intent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,19 +25,17 @@ import fr.isep.news.Model.Newsdetail;
 import fr.isep.news.databinding.ActivityNewsdetailBinding;
 
 
-//TODO Toast 不显示问题
 
 public class NewsDetailActivity extends AppCompatActivity {
 
     private ActivityNewsdetailBinding binding;
 
-    private String NewsTitle,NewsAuthor,NewsPublishAt,NewsContent,NewsImageURL,NewsURL,NewsDescription;
+    private String NewsTitle, NewsAuthor, NewsPublishAt, NewsContent, NewsImageURL, NewsURL, NewsDescription;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
     private String userId;
-
 
 
     @Override
@@ -61,7 +55,9 @@ public class NewsDetailActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         userId = mAuth.getCurrentUser().getUid();
 
-
+        if (NewsContent == null) {
+            NewsContent = "There is no content for this news...Click the button below to get more...";
+        }
         String[] temp = NewsContent.split("\\[");
 
         binding = ActivityNewsdetailBinding.inflate(getLayoutInflater());
@@ -71,10 +67,11 @@ public class NewsDetailActivity extends AppCompatActivity {
         binding.home.setOnClickListener(this::ClicktoHomePage);
         binding.manageAccount.setOnClickListener(this::ClicktoProfile);
         binding.collect.setOnClickListener(this::CollectNews);
+        binding.NotCollect.setOnClickListener(this::NotCollectNews);
 
         binding.NewsTitle.setText(NewsTitle);
-        binding.NewsAuthor.setText("Author: "+NewsAuthor);
-        binding.NewsPublishAt.setText("Publish Date: "+NewsPublishAt);
+        binding.NewsAuthor.setText("Author: " + NewsAuthor);
+        binding.NewsPublishAt.setText("Publish Date: " + NewsPublishAt);
         binding.NewsDescription.setText(NewsDescription);
         binding.NewsContent.setText(temp[0]);
 
@@ -83,46 +80,71 @@ public class NewsDetailActivity extends AppCompatActivity {
 
         binding.ReadMore.setOnClickListener(this::ReadMore);
 
-
+        setImageState();
 
     }
 
 
-    private void CollectNews(View view) {
-
-        binding.collect.setVisibility(View.GONE);
-
-        Newsdetail News = new Newsdetail(NewsTitle,NewsAuthor,NewsPublishAt,NewsDescription,
-                NewsContent,NewsImageURL,NewsImageURL);
+    private void setImageState() {
 
         DocumentReference documentReference = db.collection("user").document(userId).collection("News").document(NewsTitle);
 
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-
                 if (e == null && documentSnapshot.exists()) {
-                    Log.d("tag", "This News is already collected");
-                    Toast.makeText(NewsDetailActivity.this, "This News is already collected", Toast.LENGTH_SHORT).show();
-                }else{
-                    documentReference.set(News).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Log.d("tag", "News is added with ID: " + NewsTitle);
-                            Toast.makeText(NewsDetailActivity.this, "Collect success", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d("tag", "Error adding document" + e.toString());
-                        }
-                    });
-
+                    binding.NotCollect.setVisibility(View.VISIBLE);
+                    binding.collect.setVisibility(View.GONE);
+                } else {
+                    binding.NotCollect.setVisibility(View.GONE);
+                    binding.collect.setVisibility(View.VISIBLE);
                 }
             }
 
         });
 
+    }
+
+
+    private void CollectNews(View view) {
+
+        Newsdetail News = new Newsdetail(NewsTitle, NewsAuthor, NewsPublishAt, NewsDescription,
+                NewsContent, NewsImageURL, NewsImageURL);
+
+        DocumentReference documentReference = db.collection("user").document(userId).collection("News").document(NewsTitle);
+
+        documentReference.set(News).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("tag", "News is added with ID: " + NewsTitle);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("tag", "Error adding document" + e.toString());
+            }
+        });
+
+        setImageState();
+
+    }
+
+
+    private void NotCollectNews(View view) {
+        DocumentReference documentReference = db.collection("user").document(userId).collection("News").document(NewsTitle);
+        documentReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("tag", "Remove this news from the collection "+NewsTitle);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("d", "Error deleting", e);
+            }
+        });
+
+        setImageState();
     }
 
 

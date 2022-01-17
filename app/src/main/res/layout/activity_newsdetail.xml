@@ -154,7 +154,16 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@drawable/footer_selector"
-            android:src="@drawable/ic_add_black_24dp" />
+            android:src="@drawable/ic_favorite_border_black_24dp" />
+
+        <ImageView
+            android:id="@+id/NotCollect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/footer_selector"
+            android:src="@drawable/ic_favorite_black_24dp"
+            android:visibility="gone"/>
 
 
 
