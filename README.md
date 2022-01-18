@@ -5,7 +5,7 @@
 | 61571         | WANG Ruiqi    |wrq77               |
 | 61548         | XU Yuan       |yejiyuan            |
 
-# For the detail information of featurea and used technology, please check our accompanying document "Project Report_WANG Ruiqi 61571_XU Yuan_61548"
+#### For the detail information of featurea and used technology, please check our accompanying document "Project Report_WANG Ruiqi 61571_XU Yuan_61548"
 
 Functions we have alreage implemented:
 1. Welcome Page
