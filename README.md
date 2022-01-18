@@ -1,6 +1,5 @@
 # ISEP/Android Group - NewsApp
-### WANG Ruiqi 61571 
-### XU Yuan 61548
+
 |  Student ID   | Student Name  | github account name|
 |  ----         | ----          | ----               |
 | 61571         | WANG Ruiqi    |wrq77               |
