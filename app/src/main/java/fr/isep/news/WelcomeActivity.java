@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,38 +16,33 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private ActivityWelcomeBinding binding;
 
-    int SPLASH_TIME = 5000; //5 seconds
+    private int SPLASH_TIME = 5000; //5 seconds
 
     //flag
-    final Message message = new Message();
+    private final Message message;
 
-    final Thread thread;
-    final Handler handler;
+    private final Thread thread;
+    private final Handler handler;
 
     public WelcomeActivity() {
+
+        message = new Message();
+
         handler = new Handler(Looper.getMainLooper()) {
             @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 1) {
+            public void handleMessage(Message message) {
+                super.handleMessage(message);
+                if (message.what == 1) {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();
-                } else if (msg.what == 0) {
+                } else if (message.what == 0) {
                     thread.interrupt();
                 }
             }
         };
 
-        thread = new Thread(() -> {
-            try {
-                Thread.sleep(SPLASH_TIME);
-                message.what = 1;
-                handler.sendMessage(message);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+        thread = new Thread(this::run);
 
     }
 
@@ -60,13 +56,25 @@ public class WelcomeActivity extends AppCompatActivity {
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.WbtnSkip.setOnClickListener(v -> {
-            message.what = 0;
-            handler.sendMessage(message);
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        binding.WbtnSkip.setOnClickListener(this::ClickToSkip);
 
+    }
+
+    private void run() {
+        try {
+            Thread.sleep(SPLASH_TIME);
+            message.what = 1;
+            handler.sendMessage(message);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void ClickToSkip(View v) {
+        message.what = 0;
+        handler.sendMessage(message);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
