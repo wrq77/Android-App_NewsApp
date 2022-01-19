@@ -20,4 +20,11 @@ Functions we have alreage implemented:
 
 
 Used Technology:
+1. Lombok 
+2. View binding
+3. Recyclerview
+4. Handler, Thread
+5. Picasso
+6. Retrofit
+7. Firebase: Authentication, Cloud FireStore
 
