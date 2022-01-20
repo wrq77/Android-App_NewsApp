@@ -5,7 +5,8 @@
 | 61571         | WANG Ruiqi    |wrq77               |
 | 61548         | XU Yuan       |yejiyuan            |
 
-### For the detail information of featurea and used technology, please check our accompanying document "Project Report_WANG Ruiqi 61571_XU Yuan_61548"
+### For the detail information of featurea and used technology, please click the below link to check our accompanying document "Project Report_WANG Ruiqi 61571_XU Yuan_61548"
+
 [Project Report_WANG Ruiqi 61571_XU Yuan_61548.docx.pdf](https://github.com/wrq77/Android-App_NewsApp/files/7904855/Project.Report_WANG.Ruiqi.61571_XU.Yuan_61548.docx.pdf)
 
 
