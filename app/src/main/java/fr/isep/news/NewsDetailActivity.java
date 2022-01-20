@@ -110,7 +110,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     private void CollectNews(View view) {
 
         Newsdetail News = new Newsdetail(NewsTitle, NewsAuthor, NewsPublishAt, NewsDescription,
-                NewsContent, NewsImageURL, NewsImageURL);
+                 NewsURL, NewsImageURL,NewsContent);
 
         DocumentReference documentReference = db.collection("user").document(userId).collection("News").document(NewsTitle);
 
