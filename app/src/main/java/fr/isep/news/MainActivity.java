@@ -122,6 +122,9 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
                 }else{
                     Log.d("tag", "onEvent: Document do not exists");
                 }
+
+                //Notifies the attached observers that the underlying data has been changed
+                // and any View reflecting the data set should refresh itself.
                 categoryRecyclerVAdapter.notifyDataSetChanged();
             }
 
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
         RetrofitInterface retrofitInterface = RetrofitBuilder.getRetrofitInstance().create(RetrofitInterface.class);
         Call<News> call = retrofitInterface.getNewsByCategory(CategoryName,apiKey);
 
+        //asynchronous
         call.enqueue(new Callback<News>() {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
@@ -151,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
 
             @Override
             public void onFailure(Call<News> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+                Log.d("tag", "Fail");
             }
         });
     }
