@@ -10,7 +10,7 @@
 [Project Report_WANG Ruiqi 61571_XU Yuan_61548.docx.pdf](https://github.com/wrq77/Android-App_NewsApp/files/7904855/Project.Report_WANG.Ruiqi.61571_XU.Yuan_61548.docx.pdf)
 
 
-Functions we have alreage implemented:
+#### Functions we have alreage implemented:
 1. Welcome Page
 2. Registration (include validation of the input)/Login/Logout
 3. Select the category that the user is interested in
@@ -22,7 +22,7 @@ Functions we have alreage implemented:
 9. Show the collection list
 
 
-Used Technology:
+#### Used Technology:
 1. Lombok 
 2. View binding
 3. Recyclerview
