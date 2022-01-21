@@ -1,4 +1,4 @@
-package fr.isep.news;
+package fr.isep.news.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import fr.isep.news.Adapter.NewsRecyclerVAdapter;
 import fr.isep.news.Model.Newsdetail;
+import fr.isep.news.R;
 import fr.isep.news.databinding.ActivityCollectionBinding;
 
 

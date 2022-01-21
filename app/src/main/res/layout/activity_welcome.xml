@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".WelcomeActivity"
+    tools:context=".Activity.WelcomeActivity"
     android:background="@color/Grey_bg">
 
     <Button

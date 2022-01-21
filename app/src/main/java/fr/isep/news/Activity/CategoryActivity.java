@@ -1,4 +1,4 @@
-package fr.isep.news;
+package fr.isep.news.Activity;
 
 
 import android.content.Intent;
@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import fr.isep.news.Model.Category;
+import fr.isep.news.R;
 import fr.isep.news.databinding.ActivitySelectcategoryBinding;
 
 public class CategoryActivity  extends AppCompatActivity {

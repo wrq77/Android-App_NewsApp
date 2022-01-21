@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import fr.isep.news.NewsDetailActivity;
+import fr.isep.news.Activity.NewsDetailActivity;
 import fr.isep.news.Model.Newsdetail;
 import fr.isep.news.databinding.NewsItemsBinding;
 

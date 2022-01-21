@@ -1,4 +1,4 @@
-package fr.isep.news;
+package fr.isep.news.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import fr.isep.news.R;
 import fr.isep.news.databinding.ActivityWelcomeBinding;
 
 

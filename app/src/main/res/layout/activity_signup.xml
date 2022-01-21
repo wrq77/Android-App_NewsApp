@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/Grey_bg"
-    tools:context=".SignupActivity">
+    tools:context=".Activity.SignupActivity">
 
     <ImageView
         android:id="@+id/logo"

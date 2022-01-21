@@ -6,7 +6,7 @@
     android:background="@color/Grey_bg"
     android:orientation="vertical"
     android:scrollbars="vertical"
-    tools:context=".NewsDetailActivity">
+    tools:context=".Activity.NewsDetailActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

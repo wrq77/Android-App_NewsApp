@@ -1,4 +1,4 @@
-package fr.isep.news;
+package fr.isep.news.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.isep.news.R;
 import fr.isep.news.databinding.ActivityProfilemanagementBinding;
 
 

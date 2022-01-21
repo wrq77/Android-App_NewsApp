@@ -1,16 +1,18 @@
-package fr.isep.news;
+package fr.isep.news.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 
+import android.net.ConnectivityManager;
+import android.net.Network;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +31,7 @@ import fr.isep.news.Adapter.NewsRecyclerVAdapter;
 import fr.isep.news.Model.Category;
 import fr.isep.news.Model.News;
 import fr.isep.news.Model.Newsdetail;
+import fr.isep.news.R;
 import fr.isep.news.databinding.ActivityMainBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -137,26 +140,41 @@ public class MainActivity extends AppCompatActivity implements CategoryRecyclerV
 
         String apiKey ="2a75f3dbcae446c4868c3e50e889dab7";
 
-        RetrofitInterface retrofitInterface = RetrofitBuilder.getRetrofitInstance().create(RetrofitInterface.class);
-        Call<News> call = retrofitInterface.getNewsByCategory(CategoryName,apiKey);
+        if (isOnline()) {
 
-        //asynchronous
-        call.enqueue(new Callback<News>() {
-            @Override
-            public void onResponse(Call<News> call, Response<News> response) {
-                News news = response.body();
-                ArrayList<Newsdetail> newsdetails = news.getArticles();
-                for (int i = 0; i < newsdetails.size(); i++){
-                    NewsdetailArrayList.add(new Newsdetail(newsdetails.get(i).getTitle(),newsdetails.get(i).getAuthor(),newsdetails.get(i).getPublishedAt(),
-                            newsdetails.get(i).getDescription(),newsdetails.get(i).getUrl(), newsdetails.get(i).getUrlToImage(),newsdetails.get(i).getContent()));
+            RetrofitInterface retrofitInterface = RetrofitBuilder.getRetrofitInstance().create(RetrofitInterface.class);
+            Call<News> call = retrofitInterface.getNewsByCategory(CategoryName, apiKey);
+
+            //asynchronous
+            call.enqueue(new Callback<News>() {
+                @Override
+                public void onResponse(Call<News> call, Response<News> response) {
+                    News news = response.body();
+                    ArrayList<Newsdetail> newsdetails = news.getArticles();
+                    for (int i = 0; i < newsdetails.size(); i++) {
+                        NewsdetailArrayList.add(new Newsdetail(newsdetails.get(i).getTitle(), newsdetails.get(i).getAuthor(), newsdetails.get(i).getPublishedAt(),
+                                newsdetails.get(i).getDescription(), newsdetails.get(i).getUrl(), newsdetails.get(i).getUrlToImage(), newsdetails.get(i).getContent()));
+                    }
+                    newsRecyclerVAdapter.notifyDataSetChanged();
                 }
-                newsRecyclerVAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onFailure(Call<News> call, Throwable t) {
-                Log.d("tag", "Fail");
-            }
-        });
+                @Override
+                public void onFailure(Call<News> call, Throwable t) {
+                    Log.d("tag", "Fail");
+                }
+            });
+        }else{
+            binding.Hint.setVisibility(View.VISIBLE);
+            String str = "Oops..There is no network connection";
+            binding.Hint.setText(str);
+        }
+    }
+
+    // checking whether a network interface is available
+    public boolean isOnline() {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network networkInfo = connMgr.getActiveNetwork();
+        return (networkInfo != null);
     }
 }

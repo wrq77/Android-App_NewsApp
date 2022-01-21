@@ -1,4 +1,4 @@
-package fr.isep.news;
+package fr.isep.news.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.isep.news.Model.User;
+import fr.isep.news.R;
 import fr.isep.news.databinding.ActivitySignupBinding;
 
 

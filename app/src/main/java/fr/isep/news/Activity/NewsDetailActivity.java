@@ -1,4 +1,4 @@
-package fr.isep.news;
+package fr.isep.news.Activity;
 
 
 import android.annotation.SuppressLint;
@@ -23,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.squareup.picasso.Picasso;
 
 import fr.isep.news.Model.Newsdetail;
+import fr.isep.news.R;
 import fr.isep.news.databinding.ActivityNewsdetailBinding;
 
 
@@ -95,9 +96,9 @@ public class NewsDetailActivity extends AppCompatActivity {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (e == null && documentSnapshot.exists()) {
                     binding.NotCollect.setVisibility(View.VISIBLE);
-                    binding.collect.setVisibility(View.GONE);
+                    binding.collect.setVisibility(View.INVISIBLE);
                 } else {
-                    binding.NotCollect.setVisibility(View.GONE);
+                    binding.NotCollect.setVisibility(View.INVISIBLE);
                     binding.collect.setVisibility(View.VISIBLE);
                 }
             }
