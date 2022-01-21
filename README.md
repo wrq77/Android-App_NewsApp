@@ -35,4 +35,5 @@ https://drive.google.com/drive/folders/1NsZc-jwBY-ZD8QER9L_XwpEfnTnu1_Fx?usp=sha
 5. Picasso
 6. Retrofit
 7. Firebase: Authentication, Cloud FireStore
+8. ConnectivityManager
 
