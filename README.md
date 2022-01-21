@@ -6,8 +6,9 @@
 | 61548         | XU Yuan       |yejiyuan            |
 
 ### For the detail information of featurea and used technology, please click the below link to check our accompanying document "Project Report_WANG Ruiqi 61571_XU Yuan_61548"
+[Project Report_WANG Ruiqi 61571_XU Yuan_61548.docx.pdf](https://github.com/wrq77/Android-App_NewsApp/files/7916218/Project.Report_WANG.Ruiqi.61571_XU.Yuan_61548.docx.pdf)
 
-[Project Report_WANG Ruiqi 61571_XU Yuan_61548.docx.pdf](https://github.com/wrq77/Android-App_NewsApp/files/7904855/Project.Report_WANG.Ruiqi.61571_XU.Yuan_61548.docx.pdf)
+
 
 #### Click the below link to download our apk to install our app on your phone
 
