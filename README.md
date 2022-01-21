@@ -9,6 +9,11 @@
 
 [Project Report_WANG Ruiqi 61571_XU Yuan_61548.docx.pdf](https://github.com/wrq77/Android-App_NewsApp/files/7904855/Project.Report_WANG.Ruiqi.61571_XU.Yuan_61548.docx.pdf)
 
+#### Click the below link to download our apk to install our app on your phone
+
+https://drive.google.com/drive/folders/1NsZc-jwBY-ZD8QER9L_XwpEfnTnu1_Fx?usp=sharing
+
+
 
 #### Functions we have alreage implemented:
 1. Welcome Page
